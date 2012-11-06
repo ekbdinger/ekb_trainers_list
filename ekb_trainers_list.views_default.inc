@@ -11,10 +11,9 @@ function ekb_trainers_list_views_default_views() {
   $view->name = 'trainers_list';
   $view->description = 'List of Trainer';
   $view->tag = 'users, paul';
-  $view->view_php = '';
   $view->base_table = 'users';
-  $view->is_cacheable = FALSE;
-  $view->api_version = 2;
+  $view->core = 0;
+  $view->api_version = '2';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('fields', array(
@@ -186,25 +185,32 @@ function ekb_trainers_list_views_default_views() {
       ),
     ),
     'name_1' => array(
-      'label' => 'Statistic name',
+      'label' => 'Statistic',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
         'make_link' => 0,
         'path' => '',
+        'absolute' => 0,
         'link_class' => '',
         'alt' => '',
+        'rel' => '',
         'prefix' => '',
         'suffix' => '',
+        'target' => '',
         'help' => '',
         'trim' => 0,
         'max_length' => '',
         'word_boundary' => 1,
         'ellipsis' => 1,
-        'strip_tags' => 0,
         'html' => 0,
+        'strip_tags' => 0,
       ),
-      'exclude' => 1,
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
+      'exclude' => 0,
       'id' => 'name_1',
       'table' => 'user_stats_values',
       'field' => 'name',
@@ -214,28 +220,38 @@ function ekb_trainers_list_views_default_views() {
       'relationship' => 'none',
     ),
     'value' => array(
-      'label' => 'Forum Posts',
+      'label' => 'Value',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
         'make_link' => 1,
         'path' => 'user/[uid]/track',
+        'absolute' => 0,
         'link_class' => '',
         'alt' => '',
+        'rel' => '',
         'prefix' => '',
         'suffix' => '',
+        'target' => '',
         'help' => '',
         'trim' => 0,
         'max_length' => '',
         'word_boundary' => 1,
         'ellipsis' => 1,
-        'strip_tags' => 0,
         'html' => 0,
+        'strip_tags' => 0,
       ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
       'set_precision' => FALSE,
       'precision' => 0,
       'decimal' => '.',
       'separator' => ',',
+      'format_plural' => 0,
+      'format_plural_singular' => '1',
+      'format_plural_plural' => '@count',
       'prefix' => '',
       'suffix' => '',
       'exclude' => 0,
@@ -292,7 +308,7 @@ function ekb_trainers_list_views_default_views() {
   ));
   $handler->override_option('filters', array(
     'mail' => array(
-      'operator' => 'contains',
+      'operator' => 'word',
       'value' => '',
       'group' => '0',
       'exposed' => TRUE,
@@ -301,7 +317,6 @@ function ekb_trainers_list_views_default_views() {
         'operator' => 'mail_op',
         'identifier' => 'mail',
         'label' => 'Search by E-mail',
-        'optional' => 1,
         'remember' => 0,
       ),
       'case' => 1,
@@ -313,28 +328,10 @@ function ekb_trainers_list_views_default_views() {
         'button' => 'Override',
       ),
     ),
-    'name' => array(
-      'operator' => '=',
-      'value' => 'post_count',
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'case' => 1,
-      'id' => 'name',
-      'table' => 'user_stats_values',
-      'field' => 'name',
-      'override' => array(
-        'button' => 'Override',
-      ),
-      'relationship' => 'none',
-    ),
     'rid' => array(
       'operator' => 'or',
       'value' => array(
-        '5' => '5',
+        5 => '5',
       ),
       'group' => '0',
       'exposed' => FALSE,
@@ -355,8 +352,8 @@ function ekb_trainers_list_views_default_views() {
   $handler->override_option('access', array(
     'type' => 'role',
     'role' => array(
-      '3' => 3,
-      '17' => 17,
+      3 => 3,
+      17 => 17,
     ),
   ));
   $handler->override_option('cache', array(
@@ -425,13 +422,14 @@ function ekb_trainers_list_views_default_views() {
     'title' => '',
     'description' => '',
     'weight' => 0,
-    'name' => 'navigation',
+    'name' => 'primary-links',
   ));
   $handler->override_option('tab_options', array(
     'type' => 'none',
     'title' => '',
     'description' => '',
     'weight' => 0,
+    'name' => 'navigation',
   ));
 
   $views[$view->name] = $view;
